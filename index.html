@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"
+    />
+
+    <title>mmenu - Demo</title>
+
+    <link
+      rel="stylesheet"
+      href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+    <link rel="stylesheet" href="https://mmenujs.com/demo/css/demo.css" />
+    <link rel="stylesheet" href="https://mmenujs.com/mburger/mburger.css" />
+    <link rel="stylesheet" href="https://mmenujs.com/mmenu/mmenu.css" />
+    <style>
+      #header {
+        background: #e34545 !important;
+      }
+
+      .mm-menu {
+        --mm-color-background: linear-gradient(
+          -45deg,
+          #d55d5c 20%,
+          #e34545 80%
+        );
+        --mm-color-text: #fff;
+      }
+      .mm-menu ::placeholder {
+        color: rgba(255 255 255 / 0.5);
+      }
+      .mm-navbars--top {
+        background: transparent;
+        border-bottom: none;
+        transform: translateY(-100%);
+        transition: transform 0.3s ease 0.3s;
+      }
+      .mm-wrapper--opened .mm-navbars--top {
+        transform: translateY(0%);
+      }
+      .mm-navbar,
+      .mm-panels,
+      .mm-panels > .mm-panel {
+        background: none !important;
+      }
+
+      .mm-panel--parent {
+        transform: translateX(-100%);
+      }
+
+      .mm-navbar .mm-btn--prev {
+        position: absolute;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        z-index: 10;
+        width: 40px;
+      }
+
+      .mm-searchfield {
+        height: 60px;
+        padding: 0 0 0 40px;
+        position: relative;
+      }
+      .mm-searchfield input {
+        padding-left: 20px;
+      }
+
+      .mm-panels > .mm-panel {
+        padding-top: 20px;
+      }
+      .mm-listitem:after {
+        content: none;
+      }
+
+      .mm-listitem > a,
+      .mm-listitem > span {
+        font-size: 16px;
+        padding: 15px 10px 15px 70px;
+      }
+
+      .mm-divider {
+        padding-left: 40px;
+        background: transparent;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="page">
+      <div id="header">
+        <a href="#menu" class="fa fa-bars"></a>
+        <a href="#page" class="fa fa-close"></a>
+        <span>demo</span>
+      </div>
+      <div id="content">
+        <h4>This is a demo.</h4>
+        <p>Click the menu icon to open a custom styled menu.</p>
+      </div>
+    </div>
+
+    <nav id="menu">
+      <ul id="panel-menu">
+        <li><a href="#/">Home</a></li>
+        <li><a href="#/work">Our work</a></li>
+        <li>
+          <span>About us</span>
+          <ul>
+            <li><a href="#/about/history">History</a></li>
+            <li>
+              <span>The team</span>
+              <ul>
+                <li><a href="#/about/team/management">Management</a></li>
+                <li><a href="#/about/team/sales">Sales</a></li>
+                <li><a href="#/about/team/development">Development</a></li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+        <li>
+          <span>Services</span>
+          <ul>
+            <li><a href="#/services/design">Design</a></li>
+            <li><a href="#/services/development">Development</a></li>
+            <li><a href="#/services/marketing">Marketing</a></li>
+          </ul>
+        </li>
+        <li><a href="#/contact">Contact</a></li>
+      </ul>
+    </nav>
+    <script src="https://mmenujs.com/demo/js/playground.js"></script>
+    <script src="https://mmenujs.com/mmenu/mmenu.js"></script>
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        new Mmenu(
+          "#menu",
+          {
+            extensions: ["theme-black", "fullscreen", "position-right"],
+            navbars: {
+              content: ["prev", "searchfield", "close"],
+            },
+            setSelected: {
+              hover: true,
+            },
+          },
+          {}
+        );
+
+        document.addEventListener("click", (evnt) => {
+          if (evnt.target?.closest?.('a[href^="#/"]')) {
+            evnt.preventDefault();
+            alert("Thank you for clicking, but that's a demo link.");
+          }
+        });
+      });
+    </script>
+  </body>
+</html>
